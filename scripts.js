@@ -1,15 +1,11 @@
+//N Size Version
+
 var whoseTurn = 1; //start off on player 1's turn;
 
-var winners = [
-	["a1", "a2", "a3"],
-	["b1", "b2", "b3"],
-	["c1", "c2", "c3"],
-	["a1", "b2", "c3"],
-	["a1", "b1", "c1"],
-	["a2", "b2", "c2"],
-	["a3", "b3", "c3"],
-	["a3", "b2", "c1"]
-];
+// 1. Winners array
+// 2. populate board
+
+var winners = []; // empty array 
 
 var player1 = []; //Array where we will stas squares p1 has checked
 var player2 = []; //array for p2
@@ -85,3 +81,22 @@ function doOver(){
 	// 		}
 	// 	}
 	// }
+
+
+
+
+
+//PsuedoCode for checkBoard() function
+
+// BIG IDEA: LOOK FOR A COMBO OF VALUES: 
+// x.length@ current array (I.E. ROW); 
+// y.length@ current array (I.E. ROW);
+// || x1+y1+x2+y2
+
+// an array of arrays:
+
+// [
+// [i.0]
+// [i.1]
+// [i.2]
+// ]

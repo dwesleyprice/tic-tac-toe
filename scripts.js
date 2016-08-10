@@ -1,15 +1,54 @@
+//N Size Version
+
 var whoseTurn = 1; //start off on player 1's turn;
 
-var winners = [
-	["a1", "a2", "a3"],
-	["b1", "b2", "b3"],
-	["c1", "c2", "c3"],
-	["a1", "b2", "c3"],
-	["a1", "b1", "c1"],
-	["a2", "b2", "c2"],
-	["a3", "b3", "c3"],
-	["a3", "b2", "c1"]
-];
+// 1. Winners array
+
+
+var alph = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+var winners = []; // empty array 
+var gridSize = 3;
+
+
+$('.box').click(function(){
+	markSquare();
+})
+// a0, a1, a2...aN
+// b0, b1, b2...bN
+
+var diag1 = [];
+var diag2 = [];
+
+for (var i = 0; i < gridSize; i++) {
+	diag1.push((alph[i]) + (gridSize - i));
+	diag2.push(alph[i] + i);
+	var winnersInsideH = [];
+	var winnersInsideV = [];
+	for (var j = 0; j < gridSize; j++) {
+		//Horizontal winners
+		winnersInsideH.push(alph[j] + i);
+		//Vertical Winners
+		winnersInsideV.push(alph[i] + j);
+	}
+	winners.push(winnersInsideH);
+	winners.push(winnersInsideV);
+}
+winners.push(diag1);
+winners.push(diag2);
+
+
+// 2. populate board
+var htmlForTheBoard = 0;
+var boxWidth = (100/gridSize) - (gridSize - 1);
+for (var i = 0; i < gridSize; i++) {
+	htmlForTheBoard += '<div class="board-row' + i + ' board-row">';
+		for(var j = 0; j < gridSize; j++){
+			htmlForTheBoard += '<button id="' + alph[i] + j + '" class="box" style="width:'+boxWidth+'%" onclick="markSquare(this)">';
+		}
+	htmlForTheBoard += '</div>';
+	//console.log(htmlForTheBoard)
+}
+document.getElementsByClassName('game-wrapper')[0].innerHTML = htmlForTheBoard;
 
 var player1 = []; //Array where we will stas squares p1 has checked
 var player2 = []; //array for p2
@@ -25,12 +64,12 @@ function markSquare(square){
 	else if((player1.indexOf(square.id) == -1) && (player2.indexOf(square.id) == -1)) {
 
 	if(whoseTurn == 1){
-		square.innerHTML = 'X';
+		square.className += ' test-tile-x';
 		whoseTurn = 2;
 		player1.push(square.id);
 		checkWin(player1, 1);
 
-	} else {square.innerHTML = 'O';
+	} else {square.className += ' test-tile-o';
 		whoseTurn = 1;
 		player2.push(square.id);
 		checkWin(player2, 2);
@@ -49,9 +88,9 @@ function checkWin(currentPlayersSquares, whoJustMarked){
 			if(currentPlayersSquares.indexOf(winners[i][j]) > -1){
 				//HIT!
 				rowCount++;
-				console.log(rowCount);
+				//console.log(rowCount);
 			}
-			if(rowCount == 3){
+			if(rowCount == gridSize){
 				gameOver(whoJustMarked, winners[i]);
 
 				}
@@ -67,7 +106,7 @@ function checkWin(currentPlayersSquares, whoJustMarked){
 			someoneWon = true;
 		}
 
-		console.log(player1);
+		//console.log(player1);
 	}
 
 function doOver(){
@@ -85,3 +124,22 @@ function doOver(){
 	// 		}
 	// 	}
 	// }
+
+
+
+
+
+//PsuedoCode for checkBoard() function
+
+// BIG IDEA: LOOK FOR A COMBO OF VALUES: 
+// x.length@ current array (I.E. ROW); 
+// y.length@ current array (I.E. ROW);
+// || x1+y1+x2+y2
+
+// an array of arrays:
+
+// [
+// [i.0]
+// [i.1]
+// [i.2]
+// ]

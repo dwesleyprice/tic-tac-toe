@@ -29,10 +29,10 @@
 	background-color: white;
 	border: none;
 	margin-left: 5%;
-	padding: 30px 0px;
+	padding: 40px 0px;
 	float: left;
-	font-size: 40px;
-	font-family: 'Rock Salt', cursive;
+	font-size: 15px;
+	//font-family: 'Rock Salt', cursive;
 }
 
 .board-row button:first-child{
@@ -45,6 +45,9 @@
 
 h2{
 	font-size: 20px;
+}
+h3{
+	font-size: 12px;
 }
 
 .button-wrapper{
@@ -61,4 +64,50 @@ h2{
 	background-color: cornflowerblue;
 	color: white;
 	font-size: 14px;
+}
+
+.test-tile-x
+	{
+    height: 80px;
+    width: 80px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    position: relative;
+}
+
+.test-tile-x:after
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\274c"; /* use the hex value here... */
+    font-size: 60px; 
+    color: #FFF;
+    line-height: 100px;
+    text-align: center;
+}
+
+.test-tile-o
+	{
+    height: 80px;
+    width: 80px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    position: relative;
+}
+
+.test-tile-o:after
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\274d"; /* use the hex value here... */
+    font-size: 60px; 
+    color: #FFF;
+    line-height: 100px;
+    text-align: center;
 }
